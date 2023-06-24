@@ -28,6 +28,10 @@ app.use((err, req, res, next) => {
   });
 });
 
+app.get("/", (req, res, next) => {
+  res.setHeader("Access-Controller-Allow-Credential", "true");
+  res.send("API is running ...");
+});
 // Connect DB
 db.Connect();
 // Routes init
