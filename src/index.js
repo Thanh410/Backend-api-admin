@@ -7,8 +7,10 @@ const db = require("./config/db/connect");
 const morgan = require("morgan");
 const route = require("./routes");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 // middle wares
+app.use(cors());
 app.use(cookieParser());
 app.use(
   express.urlencoded({
