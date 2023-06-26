@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 // middle wares
-app.use(cors());
+
 app.use(cookieParser());
 app.use(
   express.urlencoded({
@@ -19,6 +19,7 @@ app.use(
 );
 
 app.use(express.json());
+app.use(cors());
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong";
@@ -30,10 +31,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.get("/", (req, res, next) => {
-  res.setHeader("Access-Controller-Allow-Credential", "true");
-  res.send("API is running ...");
-});
+
 // Connect DB
 db.Connect();
 // Routes init
