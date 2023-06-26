@@ -9,8 +9,8 @@ const route = require("./routes");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
+mongoose.set("strictQuery", true);
 // middle wares
-
 app.use(cookieParser());
 app.use(
   express.urlencoded({
