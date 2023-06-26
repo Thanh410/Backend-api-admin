@@ -3,7 +3,7 @@ require("dotenv").config();
 
 async function Connect() {
   try {
-    await mongoose.connect("mongodb://localhost:27017/Booking_App", {
+    await mongoose.connect("mongodb://127.0.0.1:27017/Booking_App", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
