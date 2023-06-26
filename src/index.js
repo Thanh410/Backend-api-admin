@@ -8,6 +8,8 @@ const morgan = require("morgan");
 const route = require("./routes");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const mongoose = require("mongoose");
+
 
 mongoose.set("strictQuery", true);
 // middle wares
