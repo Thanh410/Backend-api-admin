@@ -11,7 +11,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 
-mongoose.set("strictQuery", false);
+mongoose.set("strictQuery", true);
 // middle wares
 app.use(cookieParser());
 app.use(
