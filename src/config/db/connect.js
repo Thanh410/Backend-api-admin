@@ -4,7 +4,7 @@ require("dotenv").config();
 async function Connect() {
   try {
     await mongoose.connect("mongodb://127.0.0.1:27017/Booking_App", {
-      useNewUrlParser: true,
+      useNewUrlParser: true
       
     });
     console.log("Connect Successfully");
