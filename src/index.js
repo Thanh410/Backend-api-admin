@@ -9,6 +9,8 @@ const route = require("./routes");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
+// Connect DB
+Connect();
 // middle wares
 app.use(cookieParser());
 app.use(
@@ -31,8 +33,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Connect DB
-Connect();
+
 // Routes init
 route(app);
 
