@@ -17,7 +17,7 @@ app.use(
   })
 );
 
-app.use(morgan("combined"));
+
 app.use(express.json());
 app.use(cors());
 app.use((err, req, res, next) => {
