@@ -3,7 +3,7 @@ const path = require("path");
 require("dotenv").config();
 const port = process.env.PORT || 3001;
 const app = express();
-const db = require("./config/db/connect");
+const Connect = require("./config/db");
 const morgan = require("morgan");
 const route = require("./routes");
 const cookieParser = require("cookie-parser");
@@ -17,6 +17,7 @@ app.use(
   })
 );
 
+app.use(morgan("combined"));
 app.use(express.json());
 app.use(cors());
 app.use((err, req, res, next) => {
@@ -31,7 +32,7 @@ app.use((err, req, res, next) => {
 });
 
 // Connect DB
-db.Connect();
+Connect();
 // Routes init
 route(app);
 
