@@ -10,6 +10,8 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const { error } = require("console");
 
+// Connect DB
+Connect();
 // middle wares
 app.use(cookieParser());
 app.use(
@@ -18,7 +20,7 @@ app.use(
   })
 );
 
-app.use(morgan("combined"));
+
 app.use(express.json());
 app.use(cors());
 app.use((err, req, res, next) => {
@@ -31,8 +33,13 @@ app.use((err, req, res, next) => {
     stack: err.stack,
   });
 });
+
+<<<<<<< HEAD
+
 // Connect DB
 Connect();
+
+>>>>>>> cb14279010f0c3e7ec72b2410c0e00983a1672c8
 // Routes init
 route(app);
 
