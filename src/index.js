@@ -8,6 +8,7 @@ const morgan = require("morgan");
 const route = require("./routes");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const { error } = require("console");
 
 // middle wares
 app.use(cookieParser());
@@ -17,7 +18,7 @@ app.use(
   })
 );
 
-// app.use(morgan("combined"));
+app.use(morgan("combined"));
 app.use(express.json());
 app.use(cors());
 app.use((err, req, res, next) => {
@@ -30,7 +31,6 @@ app.use((err, req, res, next) => {
     stack: err.stack,
   });
 });
-
 // Connect DB
 Connect();
 // Routes init

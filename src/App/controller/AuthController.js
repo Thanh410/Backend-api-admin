@@ -26,13 +26,13 @@ class AuthController {
       const user = await User.findOne({ username: req.body.username });
       if (!user) return next(createError(404, "User not found!"));
 
-      const isPasswordCorrect = await bcrypt.compare(
+      const isPasswordCorrect = bcrypt.compare(
         req.body.password,
         user.password
       );
 
       if (!isPasswordCorrect)
-        return next(createError(404, "Username or password wrong"));
+        return next(createError(400, "Wrong username or password "));
 
       const token = jwt.sign(
         { id: user._id, isAdmin: user.isAdmin },
