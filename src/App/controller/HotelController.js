@@ -46,7 +46,7 @@ class HotelController {
   // GETALL  /api/hotel/:id
   async getHotels(req, res, next) {
     try {
-      const hotels = await Hotel.findById({});
+      const hotels = await Hotel.find({});
       res.status(200).json(hotels);
     } catch (err) {
       next(err);

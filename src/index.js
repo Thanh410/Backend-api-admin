@@ -10,8 +10,6 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const { error } = require("console");
 
-// Connect DB
-Connect();
 // middle wares
 app.use(cookieParser());
 app.use(
@@ -19,7 +17,6 @@ app.use(
     extended: true,
   })
 );
-
 
 app.use(express.json());
 app.use(cors());
@@ -33,8 +30,7 @@ app.use((err, req, res, next) => {
     stack: err.stack,
   });
 });
-
-
+// Connect db
 Connect();
 
 // Routes init
