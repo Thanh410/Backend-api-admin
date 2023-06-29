@@ -34,12 +34,9 @@ app.use((err, req, res, next) => {
   });
 });
 
-<<<<<<< HEAD
 
-// Connect DB
 Connect();
 
->>>>>>> cb14279010f0c3e7ec72b2410c0e00983a1672c8
 // Routes init
 route(app);
 
