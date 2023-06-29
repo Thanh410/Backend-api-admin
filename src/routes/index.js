@@ -9,7 +9,7 @@ function route(app) {
   app.use("/api/hotels", hotelRouter);
   app.use("/api/users", userRouter);
   app.use("/api/rooms", roomRouter);
-  app.use("/api/email", emailRouter);
+  app.use("/api", emailRouter);
 }
 
 module.exports = route;

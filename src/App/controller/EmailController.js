@@ -1,13 +1,12 @@
-var bcrypt = require("bcryptjs");
-const createError = require("../../utils/error");
-var jwt = require("jsonwebtoken");
 const Email = require("../model/Email");
 const nodemailer = require("nodemailer");
 
 class EmailController {
-  // POST /api/email/send_recovery_email
+  // POST /api/send_recovery_email
   async sendEmail(req, res, next) {
     try {
+      var getEmail = await Email({ email: req.body.email, ...req.body });
+      console.log(req.body);
       var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -17,7 +16,7 @@ class EmailController {
       });
       const mail_configs = {
         from: process.env.MY_EMAIL,
-        to: recipient_email,
+        to: getEmail.email,
         subject: "KODING 101 PASSWORD RECOVERY",
         html: `<!DOCTYPE html>
 <html lang="en" >
@@ -36,7 +35,7 @@ class EmailController {
     </div>
     <p style="font-size:1.1em">Hi,</p>
     <p>Thank you for choosing Koding 101. Use the following OTP to complete your Password Recovery Procedure. OTP is valid for 5 minutes</p>
-    <h2 style="background: #00466a;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;">${OTP}</h2>
+    <h2 style="background: #00466a;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;">${req.body.OTP}</h2>
     <p style="font-size:0.9em;">Regards,<br />Koding 101</p>
     <hr style="border:none;border-top:1px solid #eee" />
     <div style="float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300">
@@ -55,11 +54,11 @@ class EmailController {
         if (error) {
           console.log(err);
         } else {
-          res.send("Email send succesfully");
+          console.log("Email send succesfully" + info.response);
         }
       });
-      var email = Email(req.body);
-      res.json(email);
+
+      res.json(getEmail);
     } catch (err) {
       next(err);
     }
