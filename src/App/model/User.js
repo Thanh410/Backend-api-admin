@@ -6,6 +6,7 @@ const UserSchema = new Schema(
     username: { type: String },
     email: { type: String },
     password: { type: String },
+    OTP: { type: Number },
     country: { type: String },
     city: { type: String },
     phone: { type: String },

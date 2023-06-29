@@ -38,7 +38,7 @@ class AuthController {
         { id: user._id, isAdmin: user.isAdmin },
         process.env.JWT
       );
-      const { passowrd, isAdmin, ...ortherDetail } = user._doc;
+      const { password, isAdmin, ...ortherDetail } = user._doc;
 
       res
         .cookie("access_token", token, {

@@ -1,12 +1,15 @@
-const Email = require("../model/Email");
+const User = require("../model/User");
 const nodemailer = require("nodemailer");
+const emailExistence = require("email-existence");
 
 class EmailController {
   // POST /api/send_recovery_email
   async sendEmail(req, res, next) {
     try {
-      var getEmail = await Email({ email: req.body.email, ...req.body });
-      console.log(req.body);
+      var getEmail = await User.findOne({ email: req.body.email });
+      emailExistence.check(getEmail.email, function (err, res) {
+        console.log("res: " + res);
+      });
       var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
