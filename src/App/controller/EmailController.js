@@ -60,8 +60,8 @@ class EmailController {
           console.log("Email send succesfully" + info.response);
         }
       });
-
-      res.json(getEmail);
+      const { email } = getEmail._doc;
+      res.json(email);
     } catch (err) {
       next(err);
     }
