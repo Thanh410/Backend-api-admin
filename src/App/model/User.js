@@ -3,15 +3,15 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
   {
-    username: { type: String },
-    email: { type: String },
-    password: { type: String },
+    username: { type: String, unique: true },
+    email: { type: String, unique: true },
+    password: { type: String, unique: true },
     OTP: { type: Number },
     country: { type: String },
     city: { type: String },
-    phone: { type: String },
+    phone: { type: String, unique: true },
     img: { type: String },
-    isAdmin: { type: Boolean, default: false },
+    isAdmin: { type: Boolean, default: true },
     photos: { type: Array },
   },
   {

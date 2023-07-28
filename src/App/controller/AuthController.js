@@ -23,22 +23,22 @@ class AuthController {
   // POST /api/auth/login
   async login(req, res, next) {
     try {
-      const user = await User.findOne({ username: req.body.username });
-      if (!user) return next(createError(404, "User not found!"));
+      const email = await User.findOne({ email: req.body.email });
+      if (!email) return next(createError(404, "Email not found!"));
 
       const isPasswordCorrect = bcrypt.compare(
         req.body.password,
-        user.password
+        email.password
       );
 
       if (!isPasswordCorrect)
-        return next(createError(400, "Wrong username or password "));
+        return next(createError(400, "Wrong email or password "));
 
       const token = jwt.sign(
-        { id: user._id, isAdmin: user.isAdmin },
+        { id: email._id, isAdmin: email.isAdmin },
         process.env.JWT
       );
-      const { password, isAdmin, ...ortherDetail } = user._doc;
+      const { password, isAdmin, ...ortherDetail } = email._doc;
 
       res
         .cookie("access_token", token, {
